@@ -1,2 +1,2 @@
 # mobile-flashcards
-Flash cards study app developed using react native
+Flash card study app, developed with react native

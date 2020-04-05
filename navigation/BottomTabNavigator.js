@@ -1,0 +1,38 @@
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import * as React from 'react';
+
+import TabBarIcon from '../components/TabBarIcon';
+import HomeScreen from '../screens/HomeScreen';
+import AddDeckScreen from '../screens/AddDeckScreen';
+
+const BottomTab = createBottomTabNavigator();
+const INITIAL_ROUTE_NAME = 'Home';
+
+export default function BottomTabNavigator({ navigation, route }) {
+  return (
+    <BottomTab.Navigator initialRouteName={INITIAL_ROUTE_NAME}>
+      <BottomTab.Screen
+        name="Home"
+        component={HomeScreen}
+        options={{
+          title: 'Get Started',
+          headerTitle: 'Home',
+          tabBarIcon: ({ focused }) => (
+            <TabBarIcon focused={focused} name="home" />
+          ),
+        }}
+      />
+      <BottomTab.Screen
+        name="AddDeck"
+        component={AddDeckScreen}
+        options={{
+          title: 'Add Deck',
+          headerTitle: 'Add Deck',
+          tabBarIcon: ({ focused }) => (
+            <TabBarIcon focused={focused} name="cards" />
+          ),
+        }}
+      />
+    </BottomTab.Navigator>
+  );
+}
