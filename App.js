@@ -8,6 +8,8 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import BottomTabNavigator from './navigation/BottomTabNavigator';
 import ErrorBoundary from './components/ErrorBoundary';
+import DeckScreen from './screens/DeckScreen';
+import AddQuestion from './screens/AddQuestion';
 
 const Stack = createStackNavigator();
 
@@ -49,6 +51,8 @@ export default function App(props) {
           >
             <Stack.Navigator>
               <Stack.Screen name="Root" component={BottomTabNavigator} />
+              <Stack.Screen name="Deck" component={DeckScreen} />
+              <Stack.Screen name="AddQuestion" component={AddQuestion} />
             </Stack.Navigator>
           </NavigationContainer>
         </View>

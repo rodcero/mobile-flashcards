@@ -1,7 +1,9 @@
 import React from 'react';
-import { FlatList, Text, View } from 'react-native';
+import { FlatList, Text, View, TouchableWithoutFeedback } from 'react-native';
 import PropTypes from 'prop-types';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { useNavigation } from '@react-navigation/native';
+
 import { MonoText } from './StyledText';
 
 const DATA = [
@@ -32,21 +34,27 @@ const DATA = [
   },
 ];
 
-const DeckListItem = ({ deck }) => {
+const DeckListItem = ({ deck, navigation }) => {
+  console.log(navigation);
   return (
-    <View>
-      <Text>{deck.title}</Text>
-      <MonoText>Cards: {deck.questions.length}</MonoText>
-    </View>
+    <TouchableWithoutFeedback onPress={() => navigation.navigate('Deck')}>
+      <View>
+        <Text>{deck.title}</Text>
+        <MonoText>Cards: {deck.questions.length}</MonoText>
+      </View>
+    </TouchableWithoutFeedback>
   );
 };
 
 const DeckList = props => {
+  const navigation = useNavigation();
   return (
     <SafeAreaView>
       <FlatList
         data={DATA}
-        renderItem={({ item }) => <DeckListItem deck={item} />}
+        renderItem={({ item }) => (
+          <DeckListItem deck={item} navigation={navigation} />
+        )}
         keyExtractor={item => `${item.id}`}
       ></FlatList>
     </SafeAreaView>
