@@ -3,6 +3,7 @@ import { FlatList, Text, View, TouchableWithoutFeedback } from 'react-native';
 import PropTypes from 'prop-types';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
+import styled from 'styled-components/native'
 
 import { MonoText } from './StyledText';
 
@@ -34,14 +35,22 @@ const DATA = [
   },
 ];
 
+const StyledDeckListItem = styled.View`
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: white;
+  margin: 10px 10px 0 10px;
+  box-shadow: 5px 5px 2px #eee;
+`
+
 const DeckListItem = ({ deck, navigation }) => {
-  console.log(navigation);
   return (
     <TouchableWithoutFeedback onPress={() => navigation.navigate('Deck')}>
-      <View>
-        <Text>{deck.title}</Text>
+      <StyledDeckListItem>
+        <MonoText size={24}>{deck.title}</MonoText>
         <MonoText>Cards: {deck.questions.length}</MonoText>
-      </View>
+      </StyledDeckListItem>
     </TouchableWithoutFeedback>
   );
 };
@@ -49,7 +58,6 @@ const DeckListItem = ({ deck, navigation }) => {
 const DeckList = props => {
   const navigation = useNavigation();
   return (
-    <SafeAreaView>
       <FlatList
         data={DATA}
         renderItem={({ item }) => (
@@ -57,7 +65,6 @@ const DeckList = props => {
         )}
         keyExtractor={item => `${item.id}`}
       ></FlatList>
-    </SafeAreaView>
   );
 };
 

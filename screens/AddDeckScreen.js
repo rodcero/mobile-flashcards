@@ -14,7 +14,7 @@ export default function AddDeckScreen() {
     navigation.goBack()
     navigation.navigate('Deck')
   }
-  console.log('light2', colors)
+
   return (
     <Container>
       <MonoText style={{paddingBottom: 10}}>Please name the new deck you wish to create.</MonoText>

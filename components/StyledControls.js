@@ -17,8 +17,4 @@ export const Input = styled.TextInput`
   background-color: #fff;
   border: 1px solid ${colors.primary};
   padding: 10px;
-
-  :focus{
-    border-color: blue;
-  }
 `

@@ -4,11 +4,11 @@ import { useNavigation } from '@react-navigation/native';
 
 import { MonoText } from '../components/StyledText';
 import DeckList from '../components/DeckList';
+import {Container} from '../components/StyledLayout'
 
 export default function HomeScreen(props) {
   return (
-    <View>
-      <MonoText>screens/HomeScreen.js</MonoText>
+    <View style={{flex: 1, backgroundColor: 'white'}}>
       <DeckList />
     </View>
   );
