@@ -11,6 +11,8 @@ import ErrorBoundary from './components/ErrorBoundary';
 import DeckScreen from './screens/DeckScreen';
 import AddQuestion from './screens/AddQuestion';
 
+//TODO: daily notifications if not completed atleast one quiz
+
 const Stack = createStackNavigator();
 
 export default function App(props) {

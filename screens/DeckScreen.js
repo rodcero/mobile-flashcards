@@ -7,6 +7,9 @@ function DeckScreen(props) {
   const navigation = useNavigation();
   return (
     <View>
+      {/* TODO: Deck Title */}
+      {/* TODO: Number of cards */}
+      {/* TODO: Start Quiz */}
       <TouchableWithoutFeedback
         onPress={() => navigation.navigate('AddQuestion')}
       >
