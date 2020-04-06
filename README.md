@@ -9,5 +9,11 @@ Flash card study app, developed with react native. Lets you create study decks w
 `npm run start`
 
 ***
+## Support
+
+### Tested on the following platforms
+TODO: add tested platforms
+
+***
 
 ### [License](LICENSE)
