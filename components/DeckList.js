@@ -1,7 +1,8 @@
 import React from 'react';
-import { FlatList, Text } from 'react-native';
+import { FlatList, Text, View } from 'react-native';
 import PropTypes from 'prop-types';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { MonoText } from './StyledText';
 
 const DATA = [
   {
@@ -31,12 +32,21 @@ const DATA = [
   },
 ];
 
+const DeckListItem = ({ deck }) => {
+  return (
+    <View>
+      <Text>{deck.title}</Text>
+      <MonoText>Cards: {deck.questions.length}</MonoText>
+    </View>
+  );
+};
+
 const DeckList = props => {
   return (
     <SafeAreaView>
       <FlatList
         data={DATA}
-        renderItem={({ item }) => <Text>{item.title}</Text>}
+        renderItem={({ item }) => <DeckListItem deck={item} />}
         keyExtractor={item => `${item.id}`}
       ></FlatList>
     </SafeAreaView>
