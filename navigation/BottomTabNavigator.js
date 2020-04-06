@@ -27,8 +27,8 @@ export default function BottomTabNavigator({ navigation, route }) {
         name="AddDeck"
         component={AddDeckScreen}
         options={{
-          title: 'Add Deck',
-          headerTitle: 'Add Deck',
+          title: 'Create Deck',
+          headerTitle: 'Create Deck',
           tabBarIcon: ({ focused }) => (
             <TabBarIcon focused={focused} name="cards" />
           ),
@@ -46,6 +46,6 @@ function getHeaderTitle(route) {
     case 'Home':
       return 'Study';
     case 'AddDeck':
-      return 'Add Deck';
+      return 'Create Deck';
   }
 }

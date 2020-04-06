@@ -1,6 +1,8 @@
-import * as React from 'react';
-import { Text } from 'react-native';
+import styled from 'styled-components/native'
+import colors from '../constants/Colors'
 
-export function MonoText(props) {
-  return <Text {...props} style={[props.style, { fontFamily: 'space-mono' }]} />;
-}
+export const MonoText = styled.Text`
+font-family: 'space-mono';
+color: ${props => props.color || colors.primary};
+font-weight: 700;
+`

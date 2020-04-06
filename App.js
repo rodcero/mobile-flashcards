@@ -52,7 +52,7 @@ export default function App(props) {
             ref={containerRef}
             initialState={initialNavigationState}
           >
-            <Stack.Navigator>
+            <Stack.Navigator >
               <Stack.Screen name="Root" component={BottomTabNavigator} />
               <Stack.Screen name="Deck" component={DeckScreen} />
               <Stack.Screen name="AddQuestion" component={AddQuestion} />
@@ -67,6 +67,6 @@ export default function App(props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: 'red',
   },
 });
