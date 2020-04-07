@@ -1,16 +1,21 @@
 import * as React from 'react';
-import { Platform, StatusBar, StyleSheet, View } from 'react-native';
+import { Platform, StatusBar, View } from 'react-native';
 import { SplashScreen } from 'expo';
 import * as Font from 'expo-font';
 import { Ionicons,MaterialCommunityIcons } from '@expo/vector-icons';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import { createStore, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
+import logger from 'redux-logger';
+import thunk from 'redux-thunk';
 
 import BottomTabNavigator from './navigation/BottomTabNavigator';
 import ErrorBoundary from './components/ErrorBoundary';
 import DeckScreen from './screens/DeckScreen'
 import AddQuestionScreen from './screens/AddQuestionScreen'
 import QuizScreen from './screens/QuizScreen'
+import reducer from './reducers';
 
 //TODO: daily notifications if not completed atleast one quiz
 
@@ -46,8 +51,9 @@ export default function App(props) {
     return null;
   } else {
     return (
+      <Provider store={createStore(reducer, applyMiddleware(thunk, logger))}>
       <ErrorBoundary>
-        <View style={styles.container}>
+        <View style={{flex: 1}}>
           {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
           <NavigationContainer
             ref={containerRef}
@@ -62,13 +68,7 @@ export default function App(props) {
           </NavigationContainer>
         </View>
       </ErrorBoundary>
+      </Provider>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'red',
-  },
-});
