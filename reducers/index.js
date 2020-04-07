@@ -1,6 +1,6 @@
 const initialState = {
-  1: {
-    id: 1,
+  "1": {
+    id: "1",
     title: "React",
     questions: [
       {
@@ -13,8 +13,8 @@ const initialState = {
       },
     ],
   },
-  2: {
-    id: 2,
+  "2": {
+    id: "2",
     title: "JavaScript",
     questions: [
       {

@@ -11,8 +11,10 @@ const _addDeck = (deck) => ({
 export function useAddDeck() {
   const dispatch = useDispatch();
   return (deck) => {
-    return AsyncStorage.setItem(deck.id, JSON.stringify(deck)).then(() => {
-      dispatch(_addDeck(deck));
-    });
+    return AsyncStorage.setItem(deck.id, JSON.stringify(deck))
+      .then(() => {
+        dispatch(_addDeck(deck));
+      })
+      .catch((e) => console.log(e));
   };
 }
