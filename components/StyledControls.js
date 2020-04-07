@@ -2,12 +2,10 @@ import styled from 'styled-components/native'
 import colors from '../constants/Colors'
 
 export const Button = styled.TouchableOpacity`
-  width: 100px;
   padding: 10px;
   margin: 10px 0;
   align-items: center;
   border-radius: 5px;
-  color: red;
   background-color: ${colors.primary};
   font-size: 34px;
 `

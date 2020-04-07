@@ -8,8 +8,9 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import BottomTabNavigator from './navigation/BottomTabNavigator';
 import ErrorBoundary from './components/ErrorBoundary';
-import DeckScreen from './screens/DeckScreen';
-import AddQuestion from './screens/AddQuestion';
+import DeckScreen from './screens/DeckScreen'
+import AddQuestionScreen from './screens/AddQuestionScreen'
+import QuizScreen from './screens/QuizScreen'
 
 //TODO: daily notifications if not completed atleast one quiz
 
@@ -55,7 +56,8 @@ export default function App(props) {
             <Stack.Navigator >
               <Stack.Screen name="Root" component={BottomTabNavigator} />
               <Stack.Screen name="Deck" component={DeckScreen} />
-              <Stack.Screen name="AddQuestion" component={AddQuestion} />
+              <Stack.Screen name="AddQuestion" component={AddQuestionScreen} />
+              <Stack.Screen name="Quiz" component={QuizScreen} />
             </Stack.Navigator>
           </NavigationContainer>
         </View>
