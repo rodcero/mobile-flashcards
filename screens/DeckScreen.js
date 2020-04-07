@@ -1,25 +1,30 @@
-import React from 'react';
-import { useNavigation } from '@react-navigation/native';
-import PropTypes from 'prop-types';
-import { MonoText } from '../components/StyledText';
-import {Container} from '../components/StyledLayout'
-import { Button } from '../components/StyledControls';
-import colors from '../constants/Colors'
+import React from "react";
+import PropTypes from "prop-types";
+import { MonoText } from "../components/StyledText";
+import { Container } from "../components/StyledLayout";
+import { Button } from "../components/StyledControls";
+import colors from "../constants/Colors";
+import { useSelector } from "react-redux";
 
-function DeckScreen(props) {
-  const navigation = useNavigation();
+function DeckScreen({ navigation, route }) {
+  const deckId = route?.params?.id;
+
+  const deck = useSelector((state) => {
+    return state[deckId];
+  });
+
+  if (!deck) {
+    return null;
+  }
+
   return (
     <Container>
-      <MonoText size={25}>Deck Title</MonoText>
-      <MonoText size={20}>23 Cards</MonoText>
-      <Button
-        onPress={() => navigation.navigate('Quiz')}
-      >
+      <MonoText size={25}>{deck.title}</MonoText>
+      <MonoText size={20}>{deck.questions.length}</MonoText>
+      <Button onPress={() => navigation.navigate("Quiz")}>
         <MonoText color={colors.light}>Start Quiz</MonoText>
       </Button>
-      <Button
-        onPress={() => navigation.navigate('AddQuestion')}
-      >
+      <Button onPress={() => navigation.navigate("AddQuestion")}>
         <MonoText color={colors.light}>Add Question</MonoText>
       </Button>
     </Container>

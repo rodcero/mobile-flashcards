@@ -15,9 +15,10 @@ export default function AddDeckScreen() {
   const addDeck = useAddDeck();
 
   function add() {
-    addDeck({ id: v4(), title: value, questions: [] }).then(() => setValue(""));
+    const id = v4();
+    addDeck({ id, title: value, questions: [] }).then(() => setValue(""));
     navigation.goBack();
-    navigation.navigate("Deck");
+    navigation.navigate("Deck", { id });
   }
 
   return (

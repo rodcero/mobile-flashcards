@@ -1,5 +1,5 @@
-const initialState = [
-  {
+const initialState = {
+  1: {
     id: 1,
     title: "React",
     questions: [
@@ -13,7 +13,7 @@ const initialState = [
       },
     ],
   },
-  {
+  2: {
     id: 2,
     title: "JavaScript",
     questions: [
@@ -24,14 +24,14 @@ const initialState = [
       },
     ],
   },
-];
+};
 
 import { ADD_DECK } from "../actions/decks";
 
 export default (state = initialState, { type, deck }) => {
   switch (type) {
     case ADD_DECK:
-      return [...state, deck];
+      return { ...state, [deck.id]: { ...deck } };
 
     default:
       return state;
