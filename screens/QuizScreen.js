@@ -5,6 +5,10 @@ import { Container } from "../components/StyledLayout";
 import { Button } from "../components/StyledControls";
 import colors from "../constants/Colors";
 import { useSelector } from "react-redux";
+import {
+  clearLocalNotification,
+  setLocalNotification,
+} from "../utils/notifications";
 
 function QuizScreen({ navigation, route }) {
   const deckId = route?.params?.id;
@@ -26,6 +30,7 @@ function QuizScreen({ navigation, route }) {
     if (correct) setScore(score + 1);
     setQuestionIndex(questionIndex + 1);
     setAnswered(false);
+    clearLocalNotification().then(setLocalNotification);
   };
 
   const restart = () => {

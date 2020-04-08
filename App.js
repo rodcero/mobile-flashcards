@@ -15,8 +15,7 @@ import DeckScreen from "./screens/DeckScreen";
 import AddQuestionScreen from "./screens/AddQuestionScreen";
 import QuizScreen from "./screens/QuizScreen";
 import reducer from "./reducers";
-
-//TODO: daily notifications if not completed atleast one quiz
+import { setLocalNotification } from "./utils/notifications";
 
 const Stack = createStackNavigator();
 
@@ -34,6 +33,7 @@ export default function App(props) {
           ...MaterialCommunityIcons.font,
           "space-mono": require("./assets/fonts/SpaceMono-Regular.ttf"),
         });
+        setLocalNotification();
       } catch (e) {
         console.warn(e);
       } finally {
