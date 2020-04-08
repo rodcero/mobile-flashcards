@@ -1,15 +1,15 @@
-import React, { useState } from "react";
-import { View } from "react-native";
-import { MonoText } from "../components/StyledText";
-import { Container } from "../components/StyledLayout";
-import { Button } from "../components/StyledControls";
-import colors from "../constants/Colors";
-import { useSelector } from "react-redux";
+import React, { useState } from 'react';
+import { View } from 'react-native';
+import { MonoText } from '../components/StyledText';
+import { Container } from '../components/StyledLayout';
+import { Button } from '../components/StyledControls';
+import colors from '../constants/Colors';
+import { useSelector } from 'react-redux';
 import {
   clearLocalNotification,
   setLocalNotification,
-} from "../utils/notifications";
-import Message from "../components/Message";
+} from '../utils/notifications';
+import Message from '../components/Message';
 
 function QuizScreen({ navigation, route }) {
   const deckId = route?.params?.id;
@@ -19,7 +19,7 @@ function QuizScreen({ navigation, route }) {
   });
 
   if (!deck) {
-    return <Message type="error">Invalid call: missing deck.</Message>;
+    return <Message type='error'>Invalid call: missing deck.</Message>;
   }
 
   const total = deck.questions.length;
@@ -31,7 +31,6 @@ function QuizScreen({ navigation, route }) {
     if (correct) setScore(score + 1);
     setQuestionIndex(questionIndex + 1);
     setAnswered(false);
-    clearLocalNotification().then(setLocalNotification);
   };
 
   const restart = () => {
@@ -41,6 +40,7 @@ function QuizScreen({ navigation, route }) {
   };
 
   if (total === questionIndex) {
+    clearLocalNotification().then(setLocalNotification);
     return (
       <Container>
         <MonoText>
