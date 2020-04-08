@@ -1,21 +1,21 @@
-import React, { useState } from "react";
-import { MonoText } from "../components/StyledText";
-import { Button, Input } from "../components/StyledControls";
-import { Container } from "../components/StyledLayout";
-import colors from "../constants/Colors";
-import { useAddDeck } from "../actions/decks";
+import React, { useState } from 'react';
+import { MonoText } from '../components/StyledText';
+import { Button, Input } from '../components/StyledControls';
+import { Container } from '../components/StyledLayout';
+import colors from '../constants/Colors';
+import { useAddDeck } from '../actions/decks';
 
 export default function AddDeckScreen({ navigation }) {
-  const [title, setTitle] = useState("");
+  const [title, setTitle] = useState('');
 
   const addDeck = useAddDeck();
 
   async function add() {
     const id = `${Math.random().toString(36)}-${Math.random().toString(36)}`;
     addDeck(id, title).then(() => {
-      setTitle("");
+      setTitle('');
       navigation.goBack();
-      navigation.navigate("Deck", { id });
+      navigation.navigate('Deck', { id });
     });
   }
 
@@ -25,7 +25,7 @@ export default function AddDeckScreen({ navigation }) {
         Please name the new deck you wish to create.
       </MonoText>
       <Input value={title} onChangeText={setTitle}></Input>
-      <Button onPress={add}>
+      <Button disabled={title === ''} onPress={add}>
         <MonoText color={colors.light}>CREATE DECK</MonoText>
       </Button>
     </Container>
