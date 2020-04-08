@@ -5,8 +5,7 @@ export default (state = {}, { type, deck, decks, deckId, question }) => {
     case ADD_DECK:
       return { ...state, [deck.id]: { ...deck } };
     case GET_DECKS:
-      if (decks === null) return { ...initialState };
-      else return { ...decks };
+      return { ...decks };
     case ADD_QUESTION:
       return {
         ...state,
