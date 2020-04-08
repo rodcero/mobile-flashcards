@@ -5,12 +5,15 @@ import { MonoText } from "../components/StyledText";
 import { Container } from "../components/StyledLayout";
 import colors from "../constants/Colors";
 import { useAddQuestion } from "../actions/decks";
+import Message from "../components/Message";
 
 function AddQuestion({ navigation, route }) {
   const deckId = route?.params?.id;
 
   if (!deckId) {
-    return <MonoText>Invalid call: deckId is not specified</MonoText>;
+    return (
+      <Message type="error">Invalid call: deckId is not specified</Message>
+    );
   }
 
   const [question, setQuestion] = useState("");

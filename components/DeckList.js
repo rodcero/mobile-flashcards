@@ -5,6 +5,7 @@ import styled from "styled-components/native";
 import { useSelector } from "react-redux";
 
 import { MonoText } from "./StyledText";
+import Message from "./Message";
 
 const StyledDeckListItem = styled.View`
   padding: 10px;
@@ -31,10 +32,18 @@ const DeckListItem = ({ deck, navigation }) => {
 const DeckList = () => {
   const navigation = useNavigation();
   const decks = useSelector((state) => state);
+  const deckList = Object.keys(decks).map((key) => decks[key]);
+  if (deckList.length < 1)
+    return (
+      <Message>
+        Welcome, please try creating a new deck by tapping the create deck
+        option.
+      </Message>
+    );
 
   return (
     <FlatList
-      data={Object.keys(decks).map((key) => decks[key])}
+      data={deckList}
       renderItem={({ item }) => (
         <DeckListItem deck={item} navigation={navigation} />
       )}

@@ -9,6 +9,7 @@ import {
   clearLocalNotification,
   setLocalNotification,
 } from "../utils/notifications";
+import Message from "../components/Message";
 
 function QuizScreen({ navigation, route }) {
   const deckId = route?.params?.id;
@@ -18,7 +19,7 @@ function QuizScreen({ navigation, route }) {
   });
 
   if (!deck) {
-    return <MonoText>Invalid call: missing deck.</MonoText>;
+    return <Message type="error">Invalid call: missing deck.</Message>;
   }
 
   const total = deck.questions.length;

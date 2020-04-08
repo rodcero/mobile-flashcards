@@ -1,5 +1,6 @@
 import React from "react";
-import PropTypes from "prop-types";
+
+import Message from "../components/Message";
 import { MonoText } from "../components/StyledText";
 import { Container } from "../components/StyledLayout";
 import { Button } from "../components/StyledControls";
@@ -12,7 +13,7 @@ function DeckScreen({ navigation, route }) {
   const deck = useSelector((state) => state[deckId]);
 
   if (!deck) {
-    return <MonoText>Invalid call: missing deck</MonoText>;
+    return <Message type="error">Invalid call: missing deck</Message>;
   }
 
   return (
@@ -33,7 +34,5 @@ function DeckScreen({ navigation, route }) {
     </Container>
   );
 }
-
-DeckScreen.propTypes = {};
 
 export default DeckScreen;
