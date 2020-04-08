@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import { v4 } from "uuid";
-
 import { MonoText } from "../components/StyledText";
 import { Button, Input } from "../components/StyledControls";
 import { Container } from "../components/StyledLayout";
@@ -12,8 +10,8 @@ export default function AddDeckScreen({ navigation }) {
 
   const addDeck = useAddDeck();
 
-  function add() {
-    const id = v4();
+  async function add() {
+    const id = `${Math.random().toString(36)}-${Math.random().toString(36)}`;
     addDeck(id, title).then(() => {
       setTitle("");
       navigation.goBack();
@@ -28,7 +26,7 @@ export default function AddDeckScreen({ navigation }) {
       </MonoText>
       <Input value={title} onChangeText={setTitle}></Input>
       <Button onPress={add}>
-        <MonoText color={colors.light}>CREATE</MonoText>
+        <MonoText color={colors.light}>CREATE DECK</MonoText>
       </Button>
     </Container>
   );
