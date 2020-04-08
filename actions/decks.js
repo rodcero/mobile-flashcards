@@ -1,14 +1,20 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from 'react-redux';
 
-import * as API from "../utils/api";
+import * as API from '../utils/api';
 
-export const ADD_DECK = "ADD_DECK";
-export const GET_DECKS = "GET_DECKS";
-export const ADD_QUESTION = "ADD_QUESTION";
+export const ADD_DECK = 'ADD_DECK';
+export const REMOVE_DECK = 'REMOVE_DECK';
+export const GET_DECKS = 'GET_DECKS';
+export const ADD_QUESTION = 'ADD_QUESTION';
 
 const _addDeck = (deck) => ({
   type: ADD_DECK,
   deck,
+});
+
+const _removeDeck = (deckId) => ({
+  type: REMOVE_DECK,
+  deckId,
 });
 
 const _getDecks = (decks) => ({
@@ -16,11 +22,14 @@ const _getDecks = (decks) => ({
   decks,
 });
 
-const _addQuestion = (deckId, question) => ({
-  type: GET_DECKS,
-  deckId,
-  question,
-});
+export function useRemoveDeck() {
+  const dispatch = useDispatch();
+  return (deckId) => {
+    return API.removeDeck(deckId).then(() => {
+      dispatch(_removeDeck(deckId));
+    });
+  };
+}
 
 export function useGetDecks() {
   const dispatch = useDispatch();

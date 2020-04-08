@@ -1,33 +1,10 @@
 import React from 'react';
-import { FlatList, TouchableWithoutFeedback } from 'react-native';
+import { FlatList } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import styled from 'styled-components/native';
 import { useSelector } from 'react-redux';
 
-import { MonoText } from './StyledText';
 import Message from './Message';
-
-const StyledDeckListItem = styled.View`
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  background-color: white;
-  margin: 10px 10px 0 10px;
-  box-shadow: 5px 5px 2px #eee;
-`;
-
-const DeckListItem = ({ deck, navigation }) => {
-  return (
-    <TouchableWithoutFeedback
-      onPress={() => navigation.navigate('Deck', { id: deck.id })}
-    >
-      <StyledDeckListItem>
-        <MonoText size={24}>{deck.title}</MonoText>
-        <MonoText>Cards: {deck.questions.length}</MonoText>
-      </StyledDeckListItem>
-    </TouchableWithoutFeedback>
-  );
-};
+import DeckListItem from './DeckListItem';
 
 const DeckList = () => {
   const navigation = useNavigation();

@@ -1,6 +1,6 @@
-import { AsyncStorage } from "react-native";
+import { AsyncStorage } from 'react-native';
 
-const DECK_STORE_KEY = "MobileFlashcards:decks";
+const DECK_STORE_KEY = 'MobileFlashcards:decks';
 
 export const getDecks = () => {
   return AsyncStorage.getItem(DECK_STORE_KEY).then((decks) =>
@@ -13,4 +13,13 @@ export const addDeck = (deck) => {
     DECK_STORE_KEY,
     JSON.stringify({ [deck.id]: deck })
   );
+};
+
+export const removeDeck = (deckId) => {
+  return AsyncStorage.getItem(DECK_STORE_KEY)
+    .then(JSON.parse)
+    .then((items) => {
+      delete items[deckId];
+      AsyncStorage.setItem(DECK_STORE_KEY, JSON.stringify(items));
+    });
 };
