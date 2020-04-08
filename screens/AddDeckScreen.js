@@ -10,15 +10,17 @@ import { useAddDeck } from "../actions/decks";
 
 export default function AddDeckScreen() {
   const navigation = useNavigation();
-  const [value, setValue] = useState("");
+  const [title, setTitle] = useState("");
 
   const addDeck = useAddDeck();
 
   function add() {
     const id = v4();
-    addDeck({ id, title: value, questions: [] }).then(() => setValue(""));
-    navigation.goBack();
-    navigation.navigate("Deck", { id });
+    addDeck(id, title).then(() => {
+      setTitle("");
+      navigation.goBack();
+      navigation.navigate("Deck", { id });
+    });
   }
 
   return (
@@ -26,7 +28,7 @@ export default function AddDeckScreen() {
       <MonoText style={{ paddingBottom: 10 }}>
         Please name the new deck you wish to create.
       </MonoText>
-      <Input value={value} onChangeText={setValue}></Input>
+      <Input value={title} onChangeText={setTitle}></Input>
       <Button onPress={add}>
         <MonoText color={colors.light}>CREATE</MonoText>
       </Button>

@@ -50,7 +50,8 @@ export function useAddQuestion() {
 
 export function useAddDeck() {
   const dispatch = useDispatch();
-  return (deck) => {
+  return (id, title) => {
+    const deck = { id, title, questions: [] };
     return API.addDeck(deck)
       .then(() => {
         dispatch(_addDeck(deck));
