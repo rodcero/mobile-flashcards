@@ -14,10 +14,10 @@ function QuizScreen({ navigation, route }) {
   });
 
   if (!deck) {
-    return null;
+    return <MonoText>Invalid call: missing deck.</MonoText>;
   }
-  const total = deck.questions.length;
 
+  const total = deck.questions.length;
   const [answered, setAnswered] = useState(false);
   const [questionIndex, setQuestionIndex] = useState(0);
   const [score, setScore] = useState(0);

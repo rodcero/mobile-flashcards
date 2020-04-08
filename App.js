@@ -8,7 +8,6 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import logger from "redux-logger";
-import thunk from "redux-thunk";
 
 import BottomTabNavigator from "./navigation/BottomTabNavigator";
 import ErrorBoundary from "./components/ErrorBoundary";
@@ -16,7 +15,6 @@ import DeckScreen from "./screens/DeckScreen";
 import AddQuestionScreen from "./screens/AddQuestionScreen";
 import QuizScreen from "./screens/QuizScreen";
 import reducer from "./reducers";
-import { useGetDecks } from "./actions/decks";
 
 //TODO: daily notifications if not completed atleast one quiz
 
@@ -24,7 +22,6 @@ const Stack = createStackNavigator();
 
 export default function App(props) {
   const [isLoadingComplete, setLoadingComplete] = React.useState(false);
-  const [initialNavigationState, setInitialNavigationState] = React.useState();
   const containerRef = React.useRef();
 
   React.useEffect(() => {
@@ -56,10 +53,7 @@ export default function App(props) {
         <ErrorBoundary>
           <View style={{ flex: 1 }}>
             {Platform.OS === "ios" && <StatusBar barStyle="default" />}
-            <NavigationContainer
-              ref={containerRef}
-              initialState={initialNavigationState}
-            >
+            <NavigationContainer ref={containerRef}>
               <Stack.Navigator>
                 <Stack.Screen name="Root" component={BottomTabNavigator} />
                 <Stack.Screen name="Deck" component={DeckScreen} />

@@ -1,6 +1,5 @@
 import React from "react";
-import { FlatList, Text, View, TouchableWithoutFeedback } from "react-native";
-import PropTypes from "prop-types";
+import { FlatList, TouchableWithoutFeedback } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import styled from "styled-components/native";
 import { useSelector } from "react-redux";
@@ -29,7 +28,7 @@ const DeckListItem = ({ deck, navigation }) => {
   );
 };
 
-const DeckList = (props) => {
+const DeckList = () => {
   const navigation = useNavigation();
   const decks = useSelector((state) => state);
 
@@ -43,7 +42,5 @@ const DeckList = (props) => {
     ></FlatList>
   );
 };
-
-DeckList.propTypes = {};
 
 export default DeckList;

@@ -9,12 +9,10 @@ import { useSelector } from "react-redux";
 function DeckScreen({ navigation, route }) {
   const deckId = route?.params?.id;
 
-  const deck = useSelector((state) => {
-    return state[deckId];
-  });
+  const deck = useSelector((state) => state[deckId]);
 
   if (!deck) {
-    return null;
+    return <MonoText>Invalid call: missing deck</MonoText>;
   }
 
   return (

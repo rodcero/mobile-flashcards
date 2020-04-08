@@ -9,9 +9,7 @@ export default function HomeScreen() {
 
   useEffect(() => {
     getDecks();
-    return () => {
-      // cleanup;
-    };
+    return () => {};
   }, []);
 
   return (

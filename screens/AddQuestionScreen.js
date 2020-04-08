@@ -10,7 +10,7 @@ function AddQuestion({ navigation, route }) {
   const deckId = route?.params?.id;
 
   if (!deckId) {
-    return null;
+    return <MonoText>Invalid call: deckId is not specified</MonoText>;
   }
 
   const [question, setQuestion] = useState("");

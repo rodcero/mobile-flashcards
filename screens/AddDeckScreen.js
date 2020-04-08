@@ -1,15 +1,13 @@
 import React, { useState } from "react";
-import { useNavigation } from "@react-navigation/native";
+import { v4 } from "uuid";
 
 import { MonoText } from "../components/StyledText";
 import { Button, Input } from "../components/StyledControls";
 import { Container } from "../components/StyledLayout";
-import { v4 } from "uuid";
 import colors from "../constants/Colors";
 import { useAddDeck } from "../actions/decks";
 
-export default function AddDeckScreen() {
-  const navigation = useNavigation();
+export default function AddDeckScreen({ navigation }) {
   const [title, setTitle] = useState("");
 
   const addDeck = useAddDeck();
