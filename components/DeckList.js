@@ -1,11 +1,11 @@
-import React from "react";
-import { FlatList, TouchableWithoutFeedback } from "react-native";
-import { useNavigation } from "@react-navigation/native";
-import styled from "styled-components/native";
-import { useSelector } from "react-redux";
+import React from 'react';
+import { FlatList, TouchableWithoutFeedback } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import styled from 'styled-components/native';
+import { useSelector } from 'react-redux';
 
-import { MonoText } from "./StyledText";
-import Message from "./Message";
+import { MonoText } from './StyledText';
+import Message from './Message';
 
 const StyledDeckListItem = styled.View`
   padding: 10px;
@@ -19,7 +19,7 @@ const StyledDeckListItem = styled.View`
 const DeckListItem = ({ deck, navigation }) => {
   return (
     <TouchableWithoutFeedback
-      onPress={() => navigation.navigate("Deck", { id: deck.id })}
+      onPress={() => navigation.navigate('Deck', { id: deck.id })}
     >
       <StyledDeckListItem>
         <MonoText size={24}>{deck.title}</MonoText>
@@ -35,9 +35,8 @@ const DeckList = () => {
   const deckList = Object.keys(decks).map((key) => decks[key]);
   if (deckList.length < 1)
     return (
-      <Message>
-        Welcome, please try creating a new deck by tapping the create deck
-        option.
+      <Message title='Welcome!'>
+        Please try creating a new deck by tapping the create deck option.
       </Message>
     );
 
