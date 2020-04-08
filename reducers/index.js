@@ -26,13 +26,15 @@ const initialState = {
   },
 };
 
-import { ADD_DECK } from "../actions/decks";
+import { ADD_DECK, GET_DECKS } from "../actions/decks";
 
-export default (state = initialState, { type, deck }) => {
+export default (state = {}, { type, deck, decks }) => {
   switch (type) {
     case ADD_DECK:
       return { ...state, [deck.id]: { ...deck } };
-
+    case GET_DECKS:
+      if (decks === null) return { ...initialState };
+      else return { ...decks };
     default:
       return state;
   }
