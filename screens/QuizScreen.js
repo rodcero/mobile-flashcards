@@ -14,15 +14,16 @@ import Message from '../components/Message';
 function QuizScreen({ navigation, route }) {
   const deckId = route?.params?.id;
 
-  const deck = useSelector((state) => {
-    return state[deckId];
-  });
+  const { deck, questions } = useSelector(({ decks, questions }) => ({
+    deck: decks[deckId],
+    questions: questions[deckId],
+  }));
+  const questionList = Object.keys(questions).map((keys) => questions[keys]);
 
   if (!deck) {
     return <Message type='error'>Invalid call: missing deck.</Message>;
   }
 
-  const total = deck.questions.length;
   const [answered, setAnswered] = useState(false);
   const [questionIndex, setQuestionIndex] = useState(0);
   const [score, setScore] = useState(0);
@@ -74,7 +75,7 @@ function QuizScreen({ navigation, route }) {
     setScore(0);
   };
 
-  if (total === questionIndex) {
+  if (questionList.length === questionIndex) {
     clearLocalNotification().then(setLocalNotification);
     fadeAnim.setValue(0);
     startFadeAnim();
@@ -82,7 +83,7 @@ function QuizScreen({ navigation, route }) {
       <Container>
         <Animated.View style={{ opacity: fadeAnim }}>
           <MonoText>
-            Score: {score}/{total}
+            Score: {score}/{questionList.length}
           </MonoText>
           <Button onPress={restart}>
             <MonoText color={colors.light}>Restart</MonoText>
@@ -110,12 +111,12 @@ function QuizScreen({ navigation, route }) {
         }}
       >
         <MonoText size={20} style={{ marginBottom: 20 }}>
-          {`${questionIndex + 1}/${total}`} Questions
+          {`${questionIndex + 1}/${questionList.length}`} Questions
         </MonoText>
         <Animated.View style={{ opacity: fadeAnim }}>
           {answered ? (
             <View>
-              <MonoText>{deck.questions[questionIndex].answer}</MonoText>
+              <MonoText>{questionList[questionIndex].answer}</MonoText>
               <Button
                 onPress={() => {
                   onComplete(true);
@@ -135,7 +136,7 @@ function QuizScreen({ navigation, route }) {
             </View>
           ) : (
             <View>
-              <MonoText>{deck.questions[questionIndex].question}</MonoText>
+              <MonoText>{questionList[questionIndex].question}</MonoText>
               <Button
                 onPress={() => {
                   setAnswered(true);

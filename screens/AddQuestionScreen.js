@@ -4,7 +4,7 @@ import { Input, Button } from '../components/StyledControls';
 import { MonoText } from '../components/StyledText';
 import { Container } from '../components/StyledLayout';
 import colors from '../constants/Colors';
-import { useAddQuestion } from '../actions/decks';
+import { useAddQuestion } from '../actions/questions';
 import Message from '../components/Message';
 
 function AddQuestion({ navigation, route }) {
@@ -22,7 +22,8 @@ function AddQuestion({ navigation, route }) {
   const addQuestion = useAddQuestion();
 
   const add = () => {
-    addQuestion(deckId, { question, answer }).then(() => {
+    const id = `${Math.random().toString(36)}-${Math.random().toString(36)}`;
+    addQuestion(deckId, { id, question, answer }).then(() => {
       setQuestion('');
       setAnswer('');
       navigation.goBack();

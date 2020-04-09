@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { useSelector } from 'react-redux';
+import { FlatList, View } from 'react-native';
 
 import Message from '../components/Message';
 import { MonoText } from '../components/StyledText';
 import { Container } from '../components/StyledLayout';
 import { Button } from '../components/StyledControls';
 import Colors from '../constants/Colors';
-import { useSelector } from 'react-redux';
-import { FlatList, View } from 'react-native';
+import { useRemoveQuestion } from '../actions/questions';
 
 const StyledQuestionItem = styled.View`
   border: 1px solid #ccc;
@@ -21,8 +22,14 @@ const StyledQuestionItem = styled.View`
 function DeckScreen({ navigation, route }) {
   const deckId = route?.params?.id;
 
-  const deck = useSelector((state) => state[deckId]);
+  const { deck, questions } = useSelector(({ decks, questions }) => ({
+    deck: decks[deckId],
+    questions: questions[deckId] ? questions[deckId] : {},
+  }));
+
+  const questionList = Object.keys(questions).map((key) => questions[key]);
   const [showQuestions, setShowQuestions] = useState(false);
+  const removeQuestion = useRemoveQuestion();
 
   if (!deck) {
     return <Message type='error'>Invalid call: missing deck</Message>;
@@ -31,9 +38,9 @@ function DeckScreen({ navigation, route }) {
   return (
     <Container>
       <MonoText size={25}>{deck.title}</MonoText>
-      <MonoText size={20}>{deck.questions.length}</MonoText>
+      <MonoText size={20}>{questionList.length}</MonoText>
       <Button
-        disabled={deck.questions.length === 0}
+        disabled={questionList.length === 0}
         onPress={() => navigation.navigate('Quiz', { id: deck.id })}
       >
         <MonoText color={Colors.light}>Start Quiz</MonoText>
@@ -56,16 +63,15 @@ function DeckScreen({ navigation, route }) {
         <View style={{ flex: 1 }}>
           <MonoText>Question List</MonoText>
           <FlatList
-            data={deck.questions}
+            data={questionList}
             renderItem={({ item }) => {
               return (
                 <StyledQuestionItem>
                   <MonoText style={{ flex: 5 }}>{item.question}</MonoText>
                   <MaterialCommunityIcons
-                    onPress={() => console.log('delete question')}
+                    onPress={() => removeQuestion(deck.id, item.id)}
                     name={'trash-can-outline'}
                     size={30}
-                    style={{ marginBottom: -3 }}
                     color={'red'}
                   />
                 </StyledQuestionItem>

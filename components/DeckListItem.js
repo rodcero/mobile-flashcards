@@ -17,7 +17,7 @@ const StyledDeckListItem = styled.View`
   box-shadow: 5px 5px 2px #eee;
 `;
 
-export default function DeckListItem({ deck, navigation }) {
+export default function DeckListItem({ deck, navigation, questionCount }) {
   const removeDeck = useRemoveDeck();
 
   const renderRightActions = (progress, dragX) => {
@@ -68,7 +68,7 @@ export default function DeckListItem({ deck, navigation }) {
       >
         <StyledDeckListItem>
           <MonoText size={24}>{deck.title}</MonoText>
-          <MonoText>Cards: {deck.questions.length}</MonoText>
+          <MonoText>Cards: {questionCount}</MonoText>
         </StyledDeckListItem>
       </TouchableWithoutFeedback>
     </Swipeable>
