@@ -37,6 +37,7 @@ function DeckScreen({ navigation, route }) {
 
   return (
     <Container>
+      {/* TODO: Create feature to Edit Deck title */}
       <MonoText size={25}>{deck.title}</MonoText>
       <MonoText size={20}>{questionList.length}</MonoText>
       <Button
