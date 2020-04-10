@@ -51,12 +51,18 @@ function DeckScreen({ navigation, route }) {
       </View>
       <Button
         disabled={questionList.length === 0}
-        onPress={() => navigation.navigate('Quiz', { id: deck.id })}
+        onPress={() => {
+          setShowQuestions(false);
+          navigation.navigate('Quiz', { id: deck.id });
+        }}
       >
         <MonoText color={Colors.light}>Start Quiz</MonoText>
       </Button>
       <Button
-        onPress={() => navigation.navigate('AddQuestion', { id: deck.id })}
+        onPress={() => {
+          setShowQuestions(false);
+          navigation.navigate('AddQuestion', { id: deck.id });
+        }}
       >
         <MonoText color={Colors.light}>Add Question</MonoText>
       </Button>

@@ -82,8 +82,9 @@ function QuizScreen({ navigation, route }) {
     return (
       <Container>
         <Animated.View style={{ opacity: fadeAnim }}>
-          <MonoText>
-            Score: {score}/{questionList.length}
+          <MonoText size={30} style={{ padding: 30 }}>
+            Score: {score}/{questionList.length}(
+            {Math.floor((score / questionList.length) * 100)}%)
           </MonoText>
           <Button onPress={restart}>
             <MonoText color={colors.light}>Restart</MonoText>
@@ -116,7 +117,10 @@ function QuizScreen({ navigation, route }) {
         <Animated.View style={{ opacity: fadeAnim }}>
           {answered ? (
             <View>
-              <MonoText>{questionList[questionIndex].answer}</MonoText>
+              <MonoText size={25} style={{ paddingTop: 30, paddingBottom: 30 }}>
+                {questionList[questionIndex].answer}
+              </MonoText>
+
               <Button
                 onPress={() => {
                   onComplete(true);
@@ -136,7 +140,9 @@ function QuizScreen({ navigation, route }) {
             </View>
           ) : (
             <View>
-              <MonoText>{questionList[questionIndex].question}</MonoText>
+              <MonoText size={25} style={{ paddingTop: 30, paddingBottom: 30 }}>
+                {questionList[questionIndex].question}
+              </MonoText>
               <Button
                 onPress={() => {
                   setAnswered(true);
@@ -152,7 +158,5 @@ function QuizScreen({ navigation, route }) {
     </Container>
   );
 }
-
-QuizScreen.propTypes = {};
 
 export default QuizScreen;
