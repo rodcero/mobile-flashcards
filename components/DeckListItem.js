@@ -15,6 +15,7 @@ const StyledDeckListItem = styled.View`
   background-color: white;
   margin: 10px 10px 0 10px;
   box-shadow: 5px 5px 2px #eee;
+  flex-direction: row;
 `;
 
 export default function DeckListItem({ deck, navigation, questionCount }) {
@@ -67,8 +68,15 @@ export default function DeckListItem({ deck, navigation, questionCount }) {
         onPress={() => navigation.navigate('Deck', { id: deck.id })}
       >
         <StyledDeckListItem>
-          <MonoText size={24}>{deck.title}</MonoText>
-          <MonoText>Cards: {questionCount}</MonoText>
+          <MaterialCommunityIcons
+            style={{ marginLeft: 10, marginRight: 25 }}
+            size={50}
+            name={deck.icon}
+          />
+          <View>
+            <MonoText size={24}>{deck.title}</MonoText>
+            <MonoText>Cards: {questionCount}</MonoText>
+          </View>
         </StyledDeckListItem>
       </TouchableWithoutFeedback>
     </Swipeable>

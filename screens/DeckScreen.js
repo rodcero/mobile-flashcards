@@ -38,8 +38,17 @@ function DeckScreen({ navigation, route }) {
   return (
     <Container>
       {/* TODO: Create feature to Edit Deck title */}
-      <MonoText size={25}>{deck.title}</MonoText>
-      <MonoText size={20}>{questionList.length}</MonoText>
+      <View style={{ flexDirection: 'row' }}>
+        <View style={{ flex: 5 }}>
+          <MonoText size={25}>{deck.title}</MonoText>
+          <MonoText size={20}>{questionList.length}</MonoText>
+        </View>
+        <MaterialCommunityIcons
+          style={{ flex: 1 }}
+          size={50}
+          name={deck.icon}
+        />
+      </View>
       <Button
         disabled={questionList.length === 0}
         onPress={() => navigation.navigate('Quiz', { id: deck.id })}
@@ -78,8 +87,8 @@ function DeckScreen({ navigation, route }) {
                 </StyledQuestionItem>
               );
             }}
-            keyExtractor={() => {
-              return `${Math.random()}`;
+            keyExtractor={(item) => {
+              return `${item.id}`;
             }}
           />
         </View>

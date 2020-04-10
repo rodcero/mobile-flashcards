@@ -34,7 +34,6 @@ export function useGetDecks() {
   const dispatch = useDispatch();
   return () => {
     return API.getDecks().then((decks) => {
-      console.log('godecks', decks);
       dispatch(_getDecks(decks));
     });
   };
@@ -42,12 +41,10 @@ export function useGetDecks() {
 
 export function useAddDeck() {
   const dispatch = useDispatch();
-  return (id, title) => {
-    const deck = { id, title };
-    return API.addDeck(deck)
-      .then(() => {
-        dispatch(_addDeck(deck));
-      })
-      .catch((e) => console.log(e));
+  return (id, title, icon) => {
+    const deck = { id, title, icon };
+    return API.addDeck(deck).then(() => {
+      dispatch(_addDeck(deck));
+    });
   };
 }
