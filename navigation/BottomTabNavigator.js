@@ -1,36 +1,36 @@
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import * as React from "react";
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import React from 'react';
 
-import TabBarIcon from "../components/TabBarIcon";
-import HomeScreen from "../screens/HomeScreen";
-import AddDeckScreen from "../screens/AddDeckScreen";
+import TabBarIcon from '../components/TabBarIcon';
+import HomeScreen from '../screens/HomeScreen';
+import AddDeckScreen from '../screens/AddDeckScreen';
 
 const BottomTab = createBottomTabNavigator();
-const INITIAL_ROUTE_NAME = "Home";
+const INITIAL_ROUTE_NAME = 'Home';
 
 export default function BottomTabNavigator({ navigation, route }) {
   navigation.setOptions({ headerTitle: getHeaderTitle(route) });
   return (
     <BottomTab.Navigator initialRouteName={INITIAL_ROUTE_NAME}>
       <BottomTab.Screen
-        name="Home"
+        name='Home'
         component={HomeScreen}
         options={{
-          title: "Get Started",
-          headerTitle: "Home",
+          title: 'Get Started',
+          headerTitle: 'Home',
           tabBarIcon: ({ focused }) => (
-            <TabBarIcon focused={focused} name="home" />
+            <TabBarIcon focused={focused} name='home' />
           ),
         }}
       />
       <BottomTab.Screen
-        name="AddDeck"
+        name='AddDeck'
         component={AddDeckScreen}
         options={{
-          title: "Create Deck",
-          headerTitle: "Create Deck",
+          title: 'Create Deck',
+          headerTitle: 'Create Deck',
           tabBarIcon: ({ focused }) => (
-            <TabBarIcon focused={focused} name="cards" />
+            <TabBarIcon focused={focused} name='cards' />
           ),
         }}
       />
@@ -43,9 +43,9 @@ function getHeaderTitle(route) {
     route.state?.routes[route.state.index]?.name ?? INITIAL_ROUTE_NAME;
 
   switch (routeName) {
-    case "Home":
-      return "Home";
-    case "AddDeck":
-      return "Create Deck";
+    case 'Home':
+      return 'Home';
+    case 'AddDeck':
+      return 'Create Deck';
   }
 }

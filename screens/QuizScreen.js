@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { View, Animated } from 'react-native';
+import { useSelector } from 'react-redux';
+
 import { MonoText } from '../components/StyledText';
 import { Container } from '../components/StyledLayout';
 import { Button } from '../components/StyledControls';
 import colors from '../constants/Colors';
-import { useSelector } from 'react-redux';
 import {
   clearLocalNotification,
   setLocalNotification,

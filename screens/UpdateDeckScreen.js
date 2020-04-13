@@ -6,7 +6,6 @@ import Message from '../components/Message';
 import { useUpdateDeck } from '../actions/decks';
 
 export default function UpdateDeckScreen({ navigation, route }) {
-  console.log(route, 'route');
   const deckId = route?.params?.deckId;
 
   if (!deckId) {

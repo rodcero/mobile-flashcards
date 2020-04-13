@@ -65,6 +65,7 @@ function DeckScreen({ navigation, route }) {
           name={deck.icon}
         />
       </View>
+      <View style={{ height: 40 }}></View>
       <Button
         disabled={questionList.length === 0}
         onPress={() => {

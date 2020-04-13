@@ -1,5 +1,5 @@
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import * as React from 'react';
+import React from 'react';
 
 import Colors from '../constants/Colors';
 

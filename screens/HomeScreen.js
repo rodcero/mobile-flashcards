@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { View, ActivityIndicator } from 'react-native';
-import DeckList from '../components/DeckList';
 
+import DeckList from '../components/DeckList';
 import { useGetDecks } from '../actions/decks';
 import { useGetQuestions } from '../actions/questions';
 
