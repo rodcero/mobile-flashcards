@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useLayoutEffect } from 'react';
 import styled from 'styled-components';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { useSelector } from 'react-redux';
-import { FlatList, View } from 'react-native';
+import { FlatList, View, Text, TouchableOpacity } from 'react-native';
 
 import Message from '../components/Message';
 import { MonoText } from '../components/StyledText';
@@ -30,6 +30,22 @@ function DeckScreen({ navigation, route }) {
   const questionList = Object.keys(questions).map((key) => questions[key]);
   const [showQuestions, setShowQuestions] = useState(false);
   const removeQuestion = useRemoveQuestion();
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerRight: () => (
+        <TouchableOpacity
+          onPress={() => navigation.navigate('UpdateDeck', { deckId })}
+        >
+          <Text
+            style={{ color: '#2b93ff', marginRight: 10, fontWeight: '700' }}
+          >
+            Edit
+          </Text>
+        </TouchableOpacity>
+      ),
+    });
+  }, [navigation]);
 
   if (!deck) {
     return <Message type='error'>Invalid call: missing deck</Message>;
@@ -85,7 +101,10 @@ function DeckScreen({ navigation, route }) {
                 <StyledQuestionItem>
                   <MonoText style={{ flex: 5 }}>{item.question}</MonoText>
                   <MaterialCommunityIcons
-                    onPress={() => removeQuestion(deck.id, item.id)}
+                    onPress={() => {
+                      removeQuestion(deck.id, item.id);
+                      setShowQuestions(false);
+                    }}
                     name={'trash-can-outline'}
                     size={30}
                     color={'red'}

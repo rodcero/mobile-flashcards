@@ -14,6 +14,13 @@ export const addDeck = (deck) => {
   );
 };
 
+export const updateDeck = (deck) => {
+  return AsyncStorage.mergeItem(
+    DECK_STORE_KEY,
+    JSON.stringify({ [deck.id]: deck })
+  );
+};
+
 export const removeDeck = (deckId) => {
   return AsyncStorage.getItem(DECK_STORE_KEY)
     .then(JSON.parse)

@@ -1,21 +1,22 @@
-import * as React from "react";
-import { Platform, StatusBar, View } from "react-native";
-import { SplashScreen } from "expo";
-import * as Font from "expo-font";
-import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
-import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
-import { createStore, applyMiddleware } from "redux";
-import { Provider } from "react-redux";
-import logger from "redux-logger";
+import * as React from 'react';
+import { Platform, StatusBar, View } from 'react-native';
+import { SplashScreen } from 'expo';
+import * as Font from 'expo-font';
+import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { createStore, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
+import logger from 'redux-logger';
 
-import BottomTabNavigator from "./navigation/BottomTabNavigator";
-import ErrorBoundary from "./components/ErrorBoundary";
-import DeckScreen from "./screens/DeckScreen";
-import AddQuestionScreen from "./screens/AddQuestionScreen";
-import QuizScreen from "./screens/QuizScreen";
-import reducer from "./reducers";
-import { setLocalNotification } from "./utils/notifications";
+import BottomTabNavigator from './navigation/BottomTabNavigator';
+import ErrorBoundary from './components/ErrorBoundary';
+import DeckScreen from './screens/DeckScreen';
+import AddQuestionScreen from './screens/AddQuestionScreen';
+import QuizScreen from './screens/QuizScreen';
+import UpdateDeckScreen from './screens/UpdateDeckScreen';
+import reducer from './reducers';
+import { setLocalNotification } from './utils/notifications';
 
 const Stack = createStackNavigator();
 
@@ -31,7 +32,7 @@ export default function App(props) {
         await Font.loadAsync({
           ...Ionicons.font,
           ...MaterialCommunityIcons.font,
-          "space-mono": require("./assets/fonts/SpaceMono-Regular.ttf"),
+          'space-mono': require('./assets/fonts/SpaceMono-Regular.ttf'),
         });
         setLocalNotification();
       } catch (e) {
@@ -52,16 +53,17 @@ export default function App(props) {
       <Provider store={createStore(reducer, applyMiddleware(logger))}>
         <ErrorBoundary>
           <View style={{ flex: 1 }}>
-            {Platform.OS === "ios" && <StatusBar barStyle="default" />}
+            {Platform.OS === 'ios' && <StatusBar barStyle='default' />}
             <NavigationContainer ref={containerRef}>
               <Stack.Navigator>
-                <Stack.Screen name="Root" component={BottomTabNavigator} />
-                <Stack.Screen name="Deck" component={DeckScreen} />
+                <Stack.Screen name='Root' component={BottomTabNavigator} />
+                <Stack.Screen name='Deck' component={DeckScreen} />
                 <Stack.Screen
-                  name="AddQuestion"
+                  name='AddQuestion'
                   component={AddQuestionScreen}
                 />
-                <Stack.Screen name="Quiz" component={QuizScreen} />
+                <Stack.Screen name='Quiz' component={QuizScreen} />
+                <Stack.Screen name='UpdateDeck' component={UpdateDeckScreen} />
               </Stack.Navigator>
             </NavigationContainer>
           </View>

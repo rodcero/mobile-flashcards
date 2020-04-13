@@ -34,7 +34,7 @@ function QuizScreen({ navigation, route }) {
     fadeAnim.setValue(0);
     Animated.timing(fadeAnim, {
       toValue: 1,
-      duration: 2000,
+      duration: 1000,
     }).start();
   };
 
@@ -117,7 +117,10 @@ function QuizScreen({ navigation, route }) {
         <Animated.View style={{ opacity: fadeAnim }}>
           {answered ? (
             <View>
-              <MonoText size={25} style={{ paddingTop: 30, paddingBottom: 30 }}>
+              <MonoText size={20} style={{ paddingTop: 30, color: '#999' }}>
+                ANSWER:
+              </MonoText>
+              <MonoText size={25} style={{ paddingTop: 20, paddingBottom: 30 }}>
                 {questionList[questionIndex].answer}
               </MonoText>
 
@@ -140,7 +143,10 @@ function QuizScreen({ navigation, route }) {
             </View>
           ) : (
             <View>
-              <MonoText size={25} style={{ paddingTop: 30, paddingBottom: 30 }}>
+              <MonoText size={20} style={{ paddingTop: 30, color: '#999' }}>
+                QUESTION:
+              </MonoText>
+              <MonoText size={25} style={{ paddingTop: 20, paddingBottom: 30 }}>
                 {questionList[questionIndex].question}
               </MonoText>
               <Button
