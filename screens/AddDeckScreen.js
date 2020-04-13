@@ -30,6 +30,7 @@ export default function AddDeckScreen({ navigation }) {
   const [title, setTitle] = useState('');
   const [iconSet, setIconSet] = useState([]);
   const [icon, setIcon] = useState(DEFAULT_ICON);
+  const [randomize, setRandomize] = useState(true);
 
   const addDeck = useAddDeck();
 
@@ -39,13 +40,14 @@ export default function AddDeckScreen({ navigation }) {
       Math.floor(Math.random() * Math.floor(glyphList.length))
     ).map((randomInt) => glyphList[randomInt]);
     setIconSet(iconSet);
-  }, []);
+  }, [randomize]);
 
   async function add() {
     const id = `${Math.random().toString(36)}-${Math.random().toString(36)}`;
     addDeck(id, title, icon).then(() => {
       setTitle('');
       setIcon(DEFAULT_ICON);
+      setRandomize(!randomize);
       navigation.goBack();
       navigation.navigate('Deck', { id });
     });
@@ -66,8 +68,8 @@ export default function AddDeckScreen({ navigation }) {
       </View>
       <ScrollView>
         <StyledGrid>
-          {iconSet.map((key) => (
-            <StyledIcons key={key}>
+          {iconSet.map((key, i) => (
+            <StyledIcons key={i}>
               <TouchableOpacity onPress={() => setIcon(key)}>
                 <MaterialCommunityIcons size={40} name={key} />
               </TouchableOpacity>
