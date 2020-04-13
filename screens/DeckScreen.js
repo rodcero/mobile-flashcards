@@ -81,7 +81,7 @@ function DeckScreen({ navigation, route }) {
           navigation.navigate('AddQuestion', { id: deck.id });
         }}
       >
-        <MonoText color={Colors.light}>Add Question</MonoText>
+        <MonoText color={Colors.light}>Add Card</MonoText>
       </Button>
       <Button
         onPress={() => {

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, Animated } from 'react-native';
 import { useSelector } from 'react-redux';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 import { MonoText } from '../components/StyledText';
 import { Container } from '../components/StyledLayout';
@@ -83,6 +84,10 @@ function QuizScreen({ navigation, route }) {
     return (
       <Container>
         <Animated.View style={{ opacity: fadeAnim }}>
+          <View style={{ alignItems: 'center' }}>
+            <MonoText size={25}>Deck: {deck.title}</MonoText>
+            <MaterialCommunityIcons style={{}} size={50} name={deck.icon} />
+          </View>
           <MonoText size={30} style={{ padding: 30 }}>
             Score: {score}/{questionList.length}(
             {Math.floor((score / questionList.length) * 100)}%)
