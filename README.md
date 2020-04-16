@@ -2,6 +2,8 @@
 
 Flash card study app, developed with react native. Lets you create study flashcards organized by decks.
 
+![Node.js CI](https://github.com/rodcero/mobile-flashcards/workflows/Node.js%20CI/badge.svg)
+
 ---
 
 ## How to install
